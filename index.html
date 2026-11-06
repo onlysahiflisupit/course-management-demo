@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="A course reporting demo with validated assessments, draft editing and published report snapshots."
+    />
+    <title>Coursebook · Only Supit</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      :root {
+        --accent: #2f5888;
+        --tint: #eaf1fb;
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to assessments</a>
+    <div class="shell">
+      <header>
+        <div class="brand">
+          <span class="mark" aria-hidden="true">C</span>Coursebook
+          <span class="subtle">/ Progress reports</span>
+        </div>
+        <span class="badge">Portfolio demo</span>
+      </header>
+      <main id="main">
+        <section class="hero">
+          <div>
+            <p class="eyebrow">Make progress understandable</p>
+            <h1>A useful report starts with clarity.</h1>
+            <p>
+              Save an assessment, add a practical learning note, then publish
+              the version families should see.
+            </p>
+          </div>
+        </section>
+        <section class="cards" aria-label="Assessment overview">
+          <div class="metric">
+            <span>Sample learners</span><strong>4</strong
+            ><small>Two fictional groups</small>
+          </div>
+          <div class="metric">
+            <span>Learning areas</span><strong>6</strong
+            ><small>Scores from 0 to 100</small>
+          </div>
+          <div class="metric">
+            <span>Published this term</span
+            ><strong id="published-count">0</strong
+            ><small>Ready for report preview</small>
+          </div>
+          <div class="metric">
+            <span>Selected term</span><strong id="term-card">Term 1</strong
+            ><small>Drafts stay separate</small>
+          </div>
+        </section>
+        <p class="feedback" id="feedback" role="status" aria-live="polite"></p>
+        <div class="layout">
+          <section class="panel list-panel">
+            <div class="row">
+              <h2>Learner assessments</h2>
+              <label class="field"
+                >Reporting period<select id="term">
+                  <option>Term 1</option>
+                  <option>Term 2</option>
+                </select></label
+              >
+            </div>
+            <div id="students" class="list"></div>
+            <div class="divider"></div>
+            <h3 id="assessment-title"></h3>
+            <form id="assessment-form">
+              <div class="grade-grid" id="scores"></div>
+              <label class="field"
+                >Learning note<textarea
+                  id="learning-note"
+                  maxlength="1500"
+                  placeholder="What is going well, and what should the learner practise next?"
+                ></textarea>
+              </label>
+              <p class="error" id="assessment-error" role="alert"></p>
+              <div class="actions">
+                <button id="save-draft" type="submit">Save assessment</button
+                ><button id="publish" class="primary" type="button">
+                  Publish saved assessment
+                </button>
+              </div>
+            </form>
+            <p class="subtle">
+              Save changes before publishing. Editing a draft never changes the
+              report already published.
+            </p>
+          </section>
+          <aside class="panel details" aria-label="Published report">
+            <div class="row no-print">
+              <h2>Family report preview</h2>
+              <span class="badge" id="report-state">Published</span>
+            </div>
+            <div id="report" class="report"></div>
+            <button id="print" class="no-print">Print / Save PDF</button>
+            <p class="subtle no-print">
+              This is a local preview of a published snapshot, not an
+              authenticated parent portal.
+            </p>
+          </aside>
+        </div>
+      </main>
+      <footer class="footer">
+        <span
+          >Fictional learners · Stored only in this browser · No live school
+          records</span
+        ><button id="reset">Reset sample data</button>
+      </footer>
+    </div>
+    <dialog id="reset-dialog" aria-labelledby="reset-title">
+      <h2 id="reset-title">Reset sample assessments?</h2>
+      <p>This removes this demo's saved edits from your browser.</p>
+      <div class="actions">
+        <button id="cancel-reset">Keep my changes</button
+        ><button id="confirm-reset" class="primary">Reset demo</button>
+      </div>
+    </dialog>
+    <dialog id="discard-dialog" aria-labelledby="discard-title">
+      <h2 id="discard-title">Leave unsaved assessment?</h2>
+      <p>
+        Your latest changes have not been saved. Stay here to save them, or
+        discard them and continue.
+      </p>
+      <div class="actions">
+        <button id="keep-editing">Keep editing</button
+        ><button id="discard-changes">Discard changes</button>
+      </div>
+    </dialog>
+    <script type="module" src="src/app.js"></script>
+  </body>
+</html>
